@@ -260,8 +260,25 @@ Ogre::String bundlePath()
 		mSheetFromFile = SheetManager::getSingleton().createSheet(sd);
 		mGUIManager->setActiveSheet(mSheetFromFile);
 
+		// create Main menu
+		QuickGUI::ButtonDesc* singlePlayerBD = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
+		singlePlayerBD->button_imageName = "singleplayer.png";
+		singlePlayerBD->widget_name = "SinglePlayer";
+		singlePlayerBD->widget_dimensions.size = QuickGUI::Size(384,64);
+		singlePlayerBD->widget_dimensions.position = QuickGUI::Point(50,50);
+		singlePlayerBD->widget_dragable = false;
+		mGUIManager->getActiveSheet()->createButton(singlePlayerBD);
 
-		TabControl* tc = mGUIManager->getActiveSheet()->createTabControl(Rect(275,75,250,250));
+		// create Main menu
+		QuickGUI::ButtonDesc* exitBD = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
+		exitBD->button_imageName = "exit.png";
+		exitBD->widget_name = "Exit";
+		exitBD->widget_dimensions.size = QuickGUI::Size(384,64);
+		exitBD->widget_dimensions.position = QuickGUI::Point(50,50 + 64 + 16);
+		singlePlayerBD->widget_dragable = false;
+		mGUIManager->getActiveSheet()->createButton(singlePlayerBD);
+
+		/*TabControl* tc = mGUIManager->getActiveSheet()->createTabControl(Rect(275,75,250,250));
 		tc->setTabReordering(true);
 		Root::getSingleton().setDefaultColor(QuickGUI::ColourValue::Black);
 		tc->createTabPage("Page 2");
@@ -326,6 +343,6 @@ Ogre::String bundlePath()
 		list->createTextItem("Item 1",0);
 		list->createTextItem("Item 5");
 		list->createTextItem("Item 4",3);
-		list->createImageItem("qgui.image.png");
+		list->createImageItem("qgui.image.png");*/
 
 	}
