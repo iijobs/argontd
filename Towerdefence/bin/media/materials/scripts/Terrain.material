@@ -1,0 +1,161 @@
+vertex_program TerrainAlphaSplat/VP cg
+{
+	source TerrainAlphaSplat.cg
+	entry_point TerrainVP
+    //target vs_2_0
+	profiles vs_2_0 arbvp1
+}
+
+fragment_program TerrainAlphaSplat/FP cg
+{
+	source TerrainAlphaSplat.cg
+	entry_point TerrainFP
+    //target ps_2_0
+	profiles ps_2_0 arbfp1
+}
+
+material TerrainAlphaSplatShaderMaterial
+{
+    technique
+	{
+		pass
+		{
+			vertex_program_ref TerrainAlphaSplat/VP
+			{
+                param_named_auto worldViewProj      worldviewproj_matrix
+
+                param_named_auto LightDiffuse[0] light_diffuse_colour 0
+                param_named_auto LightDiffuse[1] light_diffuse_colour 1
+                
+                param_named_auto LightPosition[0] light_position_object_space 0
+                param_named_auto LightPosition[1] light_position_object_space 1
+                
+                param_named_auto LightAttenuation[0] light_attenuation 0
+                param_named_auto LightAttenuation[1] light_attenuation 1
+                
+				param_named_auto lightAmbient ambient_light_colour
+				param_named materialDiffuse float4 0.4 0.4 0.4 1.0
+				param_named materialAmbient float4 0.6 0.6 0.6 1.0
+				
+				param_named pageSize float 65
+				param_named_auto worldMat world_matrix
+				param_named_auto fogSettings fog_params
+				param_named textureTileSize float 256
+			}
+
+
+			fragment_program_ref TerrainAlphaSplat/FP
+			{
+				param_named alpha0Mask float4 1 1 1 1
+				param_named alpha1Mask float4 0 0 0 0
+			}
+			texture_unit
+			{
+				texture_alias AlphaMap1
+				tex_address_mode clamp
+			}
+			texture_unit
+			{
+				texture_alias AlphaMap2
+				tex_address_mode clamp
+			}
+			texture_unit
+			{
+				texture_alias Splat1
+				filtering anisotropic
+			}
+			texture_unit
+			{
+				texture_alias Splat2
+				filtering anisotropic
+			}
+			texture_unit
+			{	
+				texture_alias Splat3
+				filtering anisotropic
+			}
+			texture_unit
+			{	
+				texture_alias Splat4
+				tex_address_mode wrap
+			}
+			texture_unit
+			{	
+				texture_alias Splat5
+				tex_address_mode wrap
+			}
+			texture_unit
+			{	
+				texture_alias Splat6
+				tex_address_mode wrap
+			}
+			
+			texture_unit
+			{	
+				texture_alias Splat7
+				tex_address_mode wrap
+			}
+			
+			texture_unit
+			{	
+				texture_alias Splat8
+				tex_address_mode wrap
+			}
+			
+			texture_unit
+			{
+				texture_alias Detail
+				tex_address_mode wrap
+			}
+		}
+	}
+
+	// Fallback technique
+	technique
+	{
+		pass
+		{
+			shading phong
+
+			texture_unit
+			{
+				texture_alias Fallback
+			}
+		}
+	}
+}
+
+material Terrain : TerrainAlphaSplatShaderMaterial
+{	
+	// The two images below must have 4 channels, 8 bits per channel (RGBA, or ARGB [order of channel in image format is not relevant, as OGRE can decipher which channale is slot; and shader knows where to pick the channel it needs]).
+	// Therefore, your image must be 32 bits per pixel.  Keep in mind PNG files are saved as RGB (with Alpha channel being present, but as default value of 1 for all pixels. You must manually add the alpha channel and edit it to work with alpha-channel-mapped images)
+	// Verified to work with 8 bits per channel images. *Probably (not tested)* even work with 16 bits per channel (in which case, your image is 64 bits per pixel) images, but not more (OGRE limitation).
+	set_texture_alias AlphaMap1		rainbow.png
+	set_texture_alias AlphaMap2		round_rainbow.png
+	
+	// In order:
+	// Splat1 == Red   Channel of AlphaMap1 image
+	// Splat2 == Green Channel of AlphaMap1 image
+	// Splat3 == Blue  Channel of AlphaMap1 image
+	// Splat4 == Alpha Channel of AlphaMap1 image  (tricky! Make sure to manually add alpha channel to your AlphaMap1 image)
+	set_texture_alias Splat1		FracturedFlow.png
+	set_texture_alias Splat2		Sand.png
+	set_texture_alias Splat3		splatting_snow.png
+	set_texture_alias Splat4		splatting_rock.png
+
+	// In order:
+	// Splat5 == Red   Channel of AlphaMap2 image
+	// Splat6 == Green Channel of AlphaMap2 image
+	// Splat7 == Blue  Channel of AlphaMap2 image
+	// Splat8 == Alpha Channel of AlphaMap2 image  (tricky! Make sure to manually add alpha channel to your AlphaMap2 image)	
+	set_texture_alias Splat5		grass_1024.jpg
+	set_texture_alias Splat6		splatting_rock.png
+	set_texture_alias Splat7		grass_1024.jpg
+	set_texture_alias Splat8		grass_1024.jpg
+	
+	// Detail image is "merged" with every shown image.  Also serves as a base texture.
+	set_texture_alias Detail		grass_1024.jpg
+	
+	// Fallback image is used when the user is too cheap to buy a modern graphics card.
+	set_texture_alias Fallback		light_texture.png
+}
