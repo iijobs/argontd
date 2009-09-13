@@ -21,13 +21,32 @@ commands:
 cmake -G "Unix Makefiles"
 make
 
+Next you need to create plugin.cfg in bin/Release and bin/Debug.
+Config depends on your system for example:
+
+# Defines plugins to load
+
+# Define plugin folder
+PluginFolder=/usr/lib/OGRE
+
+# Define plugins
+# Plugin=RenderSystem_Direct3D9_d
+Plugin=RenderSystem_GL
+Plugin=Plugin_ParticleFX
+# Plugin=Plugin_BSPSceneManager
+Plugin=Plugin_CgProgramManager
+Plugin=libPlugin_PCZSceneManager
+Plugin=Plugin_OctreeZone
+Plugin=Plugin_OctreeSceneManager
+
 Windows
 -------
 
-Download the windowsSDK package.
+Download the windowsSDK.zip package (http://argontd.googlecode.com/files/TowerDefenceSDK.zip)
 Extract it in the main folder of Towerdefence.
 
-cmake -G "Visual Studio xxxx"
+cmake -G "Visual Studio x xxxx"
+Open ??.sln and build 
 
 
 
