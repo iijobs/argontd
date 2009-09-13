@@ -238,6 +238,10 @@ Ogre::String bundlePath()
         mSceneMgr->setWorldGeometry( terrain_cfg );
     }
 
+	void TowerDefence::onExitClicked(const QuickGUI::EventArgs& event){
+		this->close();
+	}
+
 //----------------------------------------------//
 
 	void TowerDefence::final(void)
@@ -293,12 +297,12 @@ Ogre::String bundlePath()
 
 		// Create ToolBar with some Menus
 		ToolBar* tb = mGUIManager->getActiveSheet()->createToolBar(Rect(0,560,200,20));
+		Menu* filemenu = tb->createMenu("File");
+		MenuItem * mi = filemenu->createTextItem("Exit");
+		mi->addWidgetEventHandler(WIDGET_EVENT_MOUSE_CLICK,&TowerDefence::onExitClicked, this);
 
-		tb->createMenu("File");
-		tb->createMenu();
 		Menu* m1 = tb->createMenu("Format");
 		Menu* m2 = m1->createSubMenu("Word Wrap");
-		m1->createTextItem();
 		Menu* m3 = m2->createSubMenu();
 		m3->createTextItem();
 		m3->setTextColor(QuickGUI::ColourValue::Green);

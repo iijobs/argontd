@@ -6,6 +6,8 @@
 #include <OgreException.h>
 #include "Window.h"
 
+#include "QuickGUI.h"
+
 
 class Main {
 
@@ -54,9 +56,6 @@ protected:
 	Ogre::RenderWindow * mRenderWindow;
 
 	Window * mWindow;
-
-	//RakPeerInterface * mPeer;
-
 };
 
 /**
@@ -68,6 +67,7 @@ class TowerDefence : public Window
 protected:
 
 	QuickGUI::Sheet* mSheetFromFile;
+
 
 public:
 
@@ -98,7 +98,16 @@ public:
 	 */
 	void createScene();
 
+	/**
+	 * Called after creation of scene, can be used to create GUI, attach frame/key/mouse listeners etc
+	 */
 	virtual void final();
+
+	/**
+	 * Callback when exit clicked
+	 * @param event
+	 */
+	void onExitClicked(const QuickGUI::EventArgs& event);
 
 };
 
