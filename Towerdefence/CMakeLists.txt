@@ -8,10 +8,10 @@ set(LIBRARY_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin" CACHE STRING "")
 option(DEBUG FALSE)
 if (DEBUG)
 	set(COMPILE_FLAGS "-g")
-	set(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/Debug" CACHE STRING "")
+	set(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/" CACHE STRING "")
 else()
 	set(COMPILE_FLAGS "-w -s -Os -O3 -fexpensive-optimizations")
-	set(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/Release" CACHE STRING "")
+	set(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/" CACHE STRING "")
 endif()
 
 # find Packages in module
