@@ -23,7 +23,7 @@ private:
 	float mNormalSpeed;
 
 	/**
-	 * Current speed, after aplying slow/speed effects
+	 * Current speed, after applying slow/speed effects
 	 */
 	float mCurrentSpeed;
 
@@ -38,7 +38,7 @@ private:
 	int mCurrentHP;
 
 	/**
-	 * Type of creature: humanoid/mechnic/alien
+	 * Type of creature: human/mechanic/alien
 	 */
 	CreatureType mType;
 
@@ -46,7 +46,7 @@ private:
 	 * Element types: normal, fire, frost
 	 */
 	list<CreatureElementType> mElementTypes;
-	
+
 public:
 
 	Creature(void);

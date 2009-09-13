@@ -21,7 +21,7 @@ public:
 	static const int Mechnanic = 1;
 
 	/**
-	 * Semi-Immune to all (super creatures)
+	 * Immune to all (super creatures)
 	 */
 	static const int Alien = 2;
 };
@@ -33,12 +33,12 @@ class CreatureElementTypes {
 public:
 
 	/**
-	 * Normal damage, no bonusses
+	 * Normal damage, no bonuses
 	 */
 	static const int Normal = 0;
 
 	/**
-	 * Fire, weak agains frost, immune to fire
+	 * Fire, weak against frost, immune to fire
 	 */
 	static const int Fire = 1;
 

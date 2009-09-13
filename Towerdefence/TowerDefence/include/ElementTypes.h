@@ -8,7 +8,7 @@ namespace content {
  */
 class ElementTypes {
 
-public: 
+public:
 
 	/**
 	 * Normal damage
@@ -16,7 +16,7 @@ public:
 	static const int Normal = 0;
 
 	/**
-	 * Fire damage: burns over time. Extra damage agains frost creatures
+	 * Fire damage: burns over time. Extra damage against frost creatures
 	 */
 	static const int Fire = 1;
 
@@ -26,7 +26,7 @@ public:
 	static const int Frost = 2;
 
 	/**
-	 * Poison damage: slows + damage over time. Extra damage against humanoid, mechanic ignore
+	 * Poison damage: slows + damage over time. Extra damage against human, mechanic ignore this
 	 */
 	static const int Poison = 3;
 
