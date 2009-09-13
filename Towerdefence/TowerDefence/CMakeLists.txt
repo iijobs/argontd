@@ -1,6 +1,6 @@
 # Build rules
 include_directories(include)
-file(GLOB TowerDefenceApp_SRC "src/*.cpp")
+file(GLOB TowerDefenceApp_SRC "src/*.cpp" "include/*.h")
 add_executable(TowerDefenceApp ${TowerDefenceApp_SRC})
 
 if (CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
