@@ -4,6 +4,9 @@
 #include <OgreConfigFile.h>
 #include <OgreStringConverter.h>
 #include <OgreException.h>
+#include <OgreString.h>
+#include <string>
+using std::string;
 #include "Window.h"
 
 #include "QuickGUI.h"
@@ -120,100 +123,82 @@ public:
 
 		// create Main menu
 
-		//SP
-		QuickGUI::ButtonDesc* singlePlayerBD = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
-		singlePlayerBD->button_imageName = "singleplayer.png";
-		singlePlayerBD->widget_name = "SinglePlayer";
-		singlePlayerBD->widget_dimensions.size = QuickGUI::Size(384,64);
-		singlePlayerBD->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		singlePlayerBD->widget_dragable = false;
-		QuickGUI::Button * singleplayerbtn = mGUIManager->getActiveSheet()->createButton(singlePlayerBD);
+		//common stuff
+		QuickGUI::ButtonDesc* bd = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
+		bd->widget_dimensions.size = QuickGUI::Size(384,64);
+		bd->widget_dragable = false;
+
+		QuickGUI::ImageDesc * interbtn = QuickGUI::DescManager::getSingleton().getDefaultImageDesc();
+		interbtn->widget_dimensions.size = QuickGUI::Size(384,16);
+		interbtn->widget_dragable = false;
+
+		//SP		
+		bd->widget_skinTypeName = "singleplayer";
+		bd->widget_name = "SinglePlayer";
+		bd->widget_dimensions.position = QuickGUI::Point(topleft_x,height);		
+		QuickGUI::Button * singleplayerbtn = mGUIManager->getActiveSheet()->createButton(bd);
 		singleplayerbtn->addWidgetEventHandler(QuickGUI::WIDGET_EVENT_MOUSE_CLICK, &TowerDefence::onSinglePlayerClicked, this);
 		height += 64;
 
-		//create image between menu 1 2
-		QuickGUI::ImageDesc * menu12 = QuickGUI::DescManager::getSingleton().getDefaultImageDesc();
-		menu12->image_imageName = "menu12.png";
-		menu12->widget_dimensions.size = QuickGUI::Size(384,16);
-		menu12->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		menu12->widget_dragable = false;
-		mGUIManager->getActiveSheet()->createImage(menu12);
+		//create image between menu 1 2		
+		interbtn->image_imageName = "menu12.png";		
+		interbtn->widget_dimensions.position = QuickGUI::Point(topleft_x,height);		
+		mGUIManager->getActiveSheet()->createImage(interbtn);
 		height += 16;	
 
 		//Internet
-		QuickGUI::ButtonDesc* internetBD = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
-		internetBD->button_imageName = "internet.png";
-		internetBD->widget_name = "Internet";
-		internetBD->widget_dimensions.size = QuickGUI::Size(384,64);
-		internetBD->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		internetBD->widget_transparencyPicking = true;
-		internetBD->widget_dragable = false;
-		QuickGUI::Button * internetbtn = mGUIManager->getActiveSheet()->createButton(internetBD);
+		bd->widget_skinTypeName = "internet";
+		bd->widget_name = "Internet";
+		bd->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
+		QuickGUI::Button * internetbtn = mGUIManager->getActiveSheet()->createButton(bd);
 		internetbtn->addWidgetEventHandler(QuickGUI::WIDGET_EVENT_MOUSE_CLICK, &TowerDefence::onInternetClicked, this);
 		height += 64;
 
 		//create image between menu 2 3
-		QuickGUI::ImageDesc * menu23 = QuickGUI::DescManager::getSingleton().getDefaultImageDesc();
-		menu23->image_imageName = "menu23.png";
-		menu23->widget_dimensions.size = QuickGUI::Size(384,16);
-		menu23->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		menu23->widget_dragable = false;
-		mGUIManager->getActiveSheet()->createImage(menu23);
+		interbtn->image_imageName = "menu23.png";
+		interbtn->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
+		mGUIManager->getActiveSheet()->createImage(interbtn);
 		height += 16;	
 
 		//Lan
-		QuickGUI::ButtonDesc* lanDB = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
-		lanDB->button_imageName = "lan.png";
-		lanDB->widget_name = "Lan";
-		lanDB->widget_dimensions.size = QuickGUI::Size(384,64);
-		lanDB->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		lanDB->widget_transparencyPicking = true;
-		lanDB->widget_dragable = false;
-		QuickGUI::Button * lanbtn = mGUIManager->getActiveSheet()->createButton(lanDB);
+		bd->widget_skinTypeName = "lan";
+		bd->widget_name = "Lan";
+		bd->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
+		QuickGUI::Button * lanbtn = mGUIManager->getActiveSheet()->createButton(bd);
 		lanbtn->addWidgetEventHandler(QuickGUI::WIDGET_EVENT_MOUSE_CLICK, &TowerDefence::onLanClicked, this);
 		height += 64;
 
 		//create image between menu 3 4
-		QuickGUI::ImageDesc * menu34 = QuickGUI::DescManager::getSingleton().getDefaultImageDesc();
-		menu34->image_imageName = "menu34.png";
-		menu34->widget_dimensions.size = QuickGUI::Size(384,16);
-		menu34->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		menu34->widget_dragable = false;
-		mGUIManager->getActiveSheet()->createImage(menu34);
+		interbtn->image_imageName = "menu34.png";
+		interbtn->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
+		mGUIManager->getActiveSheet()->createImage(interbtn);
 		height += 16;
 
 		//Options
-		QuickGUI::ButtonDesc* optionsDB = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
-		optionsDB->button_imageName = "options.png";
-		optionsDB->widget_name = "Options";
-		optionsDB->widget_dimensions.size = QuickGUI::Size(384,64);
-		optionsDB->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		optionsDB->widget_transparencyPicking = true;
-		optionsDB->widget_dragable = false;
-		QuickGUI::Button * optionsbtn = mGUIManager->getActiveSheet()->createButton(optionsDB);
+		bd->widget_skinTypeName = "options";
+		bd->widget_name = "Options";
+		bd->widget_dimensions.position = QuickGUI::Point(topleft_x,height);		
+		QuickGUI::Button * optionsbtn = mGUIManager->getActiveSheet()->createButton(bd);
 		optionsbtn->addWidgetEventHandler(QuickGUI::WIDGET_EVENT_MOUSE_CLICK, &TowerDefence::onOptionsClicked, this);
 		height += 64;
 
 		//create image between menu 4 5
-		QuickGUI::ImageDesc * menu45 = QuickGUI::DescManager::getSingleton().getDefaultImageDesc();
-		menu45->image_imageName = "menu45.png";
-		menu45->widget_dimensions.size = QuickGUI::Size(384,16);
-		menu45->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		menu45->widget_dragable = false;
-		mGUIManager->getActiveSheet()->createImage(menu45);
+		interbtn->image_imageName = "menu45.png";
+		interbtn->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
+		mGUIManager->getActiveSheet()->createImage(interbtn);
 		height += 16;
 
 		//EXIT
-		QuickGUI::ButtonDesc* exitBD = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
-		exitBD->button_imageName = "exit.png";
-		exitBD->widget_name = "Exit";
-		exitBD->widget_dimensions.size = QuickGUI::Size(384,64);
-		exitBD->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		exitBD->widget_transparencyPicking = true;
-		exitBD->widget_dragable = false;
-		QuickGUI::Button * exitbtn = mGUIManager->getActiveSheet()->createButton(exitBD);
+		bd->widget_skinTypeName = "exit";
+		bd->widget_name = "Exit";
+		bd->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
+		QuickGUI::Button * exitbtn = mGUIManager->getActiveSheet()->createButton(bd);
 		exitbtn->addWidgetEventHandler(QuickGUI::WIDGET_EVENT_MOUSE_CLICK, &TowerDefence::onExitClicked, this);
 		height += 64;
+
+		//reset to default
+		bd->resetToDefault();
+		interbtn->resetToDefault();
 	}
 
 	/**

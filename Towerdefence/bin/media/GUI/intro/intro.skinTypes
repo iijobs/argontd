@@ -1,0 +1,180 @@
+Button singleplayer
+{
+        SkinElement default 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture singleplayer.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement down 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture singleplayer_h.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement over 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture singleplayer_h.png 
+            TileBackground false 
+            TileBorders true 
+        }
+}
+
+
+Button internet
+{
+        SkinElement default 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture internet.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement down 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture internet_h.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement over 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture internet_h.png 
+            TileBackground false 
+            TileBorders true 
+        }
+}
+
+Button lan
+{
+        SkinElement default 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture lan.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement down 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture lan_h.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement over 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture lan_h.png 
+            TileBackground false 
+            TileBorders true 
+        }
+}
+
+Button options
+{
+        SkinElement default 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture options.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement down 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture options_h.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement over 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture options_h.png 
+            TileBackground false 
+            TileBorders true 
+        }
+}
+
+Button exit
+{
+        SkinElement default 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture exit.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement down 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture exit_h.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement over 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture exit_h.png 
+            TileBackground false 
+            TileBorders true 
+        }
+}
