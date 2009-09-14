@@ -238,45 +238,18 @@ Ogre::String bundlePath()
         mSceneMgr->setWorldGeometry( terrain_cfg );
     }
 
-	void TowerDefence::onExitClicked(const QuickGUI::EventArgs& event){
-		this->close();
-	}
-
 //----------------------------------------------//
 
 	void TowerDefence::final(void)
 	{
-		DefaultFrameListener * framelister = new DefaultFrameListener( mRenderWindow, mCamera, Ogre::Rect(500,0,mRenderWindow->getWidth(),mRenderWindow->getHeight()) );
+		createIntroGUI();
+
+		//add some camera that follows a path over the scene
+
+		/*DefaultFrameListener * framelister = new DefaultFrameListener( mRenderWindow, mCamera, Ogre::Rect(500,0,mRenderWindow->getWidth(),mRenderWindow->getHeight()) );
 		this->add((OIS::KeyListener*)framelister);
 		this->add((OIS::MouseListener*)framelister);
-		this->add((Ogre::FrameListener*)framelister);
-
-		using namespace QuickGUI;
-		Root::getSingleton().setDefaultFontName("micross.20");
-
-		// Create Sheet
-		SheetDesc* sd = DescManager::getSingleton().getDefaultSheetDesc();
-		sd->widget_dimensions.size = Size(mRenderWindow->getWidth(),mRenderWindow->getHeight());
-		mSheetFromFile = SheetManager::getSingleton().createSheet(sd);
-		mGUIManager->setActiveSheet(mSheetFromFile);
-
-		// create Main menu
-		QuickGUI::ButtonDesc* singlePlayerBD = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
-		singlePlayerBD->button_imageName = "singleplayer.png";
-		singlePlayerBD->widget_name = "SinglePlayer";
-		singlePlayerBD->widget_dimensions.size = QuickGUI::Size(384,64);
-		singlePlayerBD->widget_dimensions.position = QuickGUI::Point(50,50);
-		singlePlayerBD->widget_dragable = false;
-		mGUIManager->getActiveSheet()->createButton(singlePlayerBD);
-
-		// create Main menu
-		QuickGUI::ButtonDesc* exitBD = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
-		exitBD->button_imageName = "exit.png";
-		exitBD->widget_name = "Exit";
-		exitBD->widget_dimensions.size = QuickGUI::Size(384,64);
-		exitBD->widget_dimensions.position = QuickGUI::Point(50,50 + 64 + 16);
-		singlePlayerBD->widget_dragable = false;
-		mGUIManager->getActiveSheet()->createButton(singlePlayerBD);
+		this->add((Ogre::FrameListener*)framelister);*/
 
 		/*TabControl* tc = mGUIManager->getActiveSheet()->createTabControl(Rect(275,75,250,250));
 		tc->setTabReordering(true);
