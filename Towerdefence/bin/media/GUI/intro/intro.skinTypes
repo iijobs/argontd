@@ -178,3 +178,75 @@ Button exit
             TileBorders true 
         }
 }
+
+Button back
+{
+        SkinElement default 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture back.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement down 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture back_h.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement over 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture back_h.png 
+            TileBackground false 
+            TileBorders true 
+        }
+}
+
+Button ok
+{
+        SkinElement default 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture ok.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement down 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture ok_h.png 
+            TileBackground false 
+            TileBorders true 
+        } 
+
+        SkinElement over 
+        { 
+			Border_Bottom 1 
+            Border_Left 1 
+            Border_Right 1 
+            Border_Top 1 
+			Texture ok_h.png 
+            TileBackground false 
+            TileBorders true 
+        }
+}

@@ -108,98 +108,25 @@ public:
 
 	//			GUI			//
 
-	void createIntroGUI() {
-		QuickGUI::Root::getSingleton().setDefaultFontName("micross.20");
+	void createIntroGUI();
 
-		// Create Sheet
-		QuickGUI::SheetDesc* sd = QuickGUI::DescManager::getSingleton().getDefaultSheetDesc();
-		sd->widget_dimensions.size = QuickGUI::Size(mRenderWindow->getWidth(),mRenderWindow->getHeight());
-		mSheetFromFile = QuickGUI::SheetManager::getSingleton().createSheet(sd);
-		mGUIManager->setActiveSheet(mSheetFromFile);
+	void createOptionsGUI();
 
-		//ofset top
-		int height = (sd->widget_dimensions.size.height/2) - (400/2);	//window vert size/2 - total vert menu size /2
-		int topleft_x = (sd->widget_dimensions.size.width/2) - (384/2);	//window hor size/2 - total hor menu size /2
+	/**
+	 * Callback when main clicked
+	 * @param event
+	 */
+	void onOkClicked(const QuickGUI::EventArgs& event){
+		this->createIntroGUI();
+	};	
 
-		// create Main menu
-
-		//common stuff
-		QuickGUI::ButtonDesc* bd = QuickGUI::DescManager::getSingleton().getDefaultButtonDesc();
-		bd->widget_dimensions.size = QuickGUI::Size(384,64);
-		bd->widget_dragable = false;
-
-		QuickGUI::ImageDesc * interbtn = QuickGUI::DescManager::getSingleton().getDefaultImageDesc();
-		interbtn->widget_dimensions.size = QuickGUI::Size(384,16);
-		interbtn->widget_dragable = false;
-
-		//SP		
-		bd->widget_skinTypeName = "singleplayer";
-		bd->widget_name = "SinglePlayer";
-		bd->widget_dimensions.position = QuickGUI::Point(topleft_x,height);		
-		QuickGUI::Button * singleplayerbtn = mGUIManager->getActiveSheet()->createButton(bd);
-		singleplayerbtn->addWidgetEventHandler(QuickGUI::WIDGET_EVENT_MOUSE_CLICK, &TowerDefence::onSinglePlayerClicked, this);
-		height += 64;
-
-		//create image between menu 1 2		
-		interbtn->image_imageName = "menu12.png";		
-		interbtn->widget_dimensions.position = QuickGUI::Point(topleft_x,height);		
-		mGUIManager->getActiveSheet()->createImage(interbtn);
-		height += 16;	
-
-		//Internet
-		bd->widget_skinTypeName = "internet";
-		bd->widget_name = "Internet";
-		bd->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		QuickGUI::Button * internetbtn = mGUIManager->getActiveSheet()->createButton(bd);
-		internetbtn->addWidgetEventHandler(QuickGUI::WIDGET_EVENT_MOUSE_CLICK, &TowerDefence::onInternetClicked, this);
-		height += 64;
-
-		//create image between menu 2 3
-		interbtn->image_imageName = "menu23.png";
-		interbtn->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		mGUIManager->getActiveSheet()->createImage(interbtn);
-		height += 16;	
-
-		//Lan
-		bd->widget_skinTypeName = "lan";
-		bd->widget_name = "Lan";
-		bd->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		QuickGUI::Button * lanbtn = mGUIManager->getActiveSheet()->createButton(bd);
-		lanbtn->addWidgetEventHandler(QuickGUI::WIDGET_EVENT_MOUSE_CLICK, &TowerDefence::onLanClicked, this);
-		height += 64;
-
-		//create image between menu 3 4
-		interbtn->image_imageName = "menu34.png";
-		interbtn->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		mGUIManager->getActiveSheet()->createImage(interbtn);
-		height += 16;
-
-		//Options
-		bd->widget_skinTypeName = "options";
-		bd->widget_name = "Options";
-		bd->widget_dimensions.position = QuickGUI::Point(topleft_x,height);		
-		QuickGUI::Button * optionsbtn = mGUIManager->getActiveSheet()->createButton(bd);
-		optionsbtn->addWidgetEventHandler(QuickGUI::WIDGET_EVENT_MOUSE_CLICK, &TowerDefence::onOptionsClicked, this);
-		height += 64;
-
-		//create image between menu 4 5
-		interbtn->image_imageName = "menu45.png";
-		interbtn->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		mGUIManager->getActiveSheet()->createImage(interbtn);
-		height += 16;
-
-		//EXIT
-		bd->widget_skinTypeName = "exit";
-		bd->widget_name = "Exit";
-		bd->widget_dimensions.position = QuickGUI::Point(topleft_x,height);
-		QuickGUI::Button * exitbtn = mGUIManager->getActiveSheet()->createButton(bd);
-		exitbtn->addWidgetEventHandler(QuickGUI::WIDGET_EVENT_MOUSE_CLICK, &TowerDefence::onExitClicked, this);
-		height += 64;
-
-		//reset to default
-		bd->resetToDefault();
-		interbtn->resetToDefault();
-	}
+	/**
+	 * Callback when main clicked
+	 * @param event
+	 */
+	void onBackClicked(const QuickGUI::EventArgs& event){
+		this->createIntroGUI();
+	};	
 
 	/**
 	 * Callback when exit clicked
@@ -214,7 +141,7 @@ public:
 	 * @param event
 	 */
 	void onOptionsClicked(const QuickGUI::EventArgs& event){
-	
+		this->createOptionsGUI();
 	};
 
 	/**
