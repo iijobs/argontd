@@ -12,12 +12,17 @@ find_package(QuickGUI)
 # find_package(OgreNewt)
 find_package(RakNet)
 
+
 # Compile settings for build types
+if (WIN32)
+
+else(WIN32)
 SET(CMAKE_CXX_FLAGS "")
 SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3 -fno-inline")
 SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g3")
 SET(CMAKE_CXX_FLAGS_RELEASE "-O2")
 SET(CMAKE_CXX_FLAGS_MINSIZEREL "-Os")
+endif()
 
 # Build Targets
 # add_subdirectory(TerrainPhysics)
