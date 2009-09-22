@@ -1,56 +1,24 @@
 # Basic Variables
 cmake_minimum_required(VERSION 2.4)
 project(TowerDefence)
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules/")
-set(LIBRARY_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin" CACHE STRING "")
 
-#debug
-option(DEBUG FALSE)
-if (DEBUG)
-	set(COMPILE_FLAGS "-g")
-	if (WIN32)
-		set(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/" CACHE STRING "")
-	else()
-		set(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/Debug" CACHE STRING "")
-	endif()
-else()
-	set(COMPILE_FLAGS "-w -s -Os -O3 -fexpensive-optimizations")
-	if (WIN32)
-		set(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/" CACHE STRING "")
-	else()
-		set(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/bin/Release" CACHE STRING "")
-	endif()
-endif()
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 
 # find Packages in module
-find_package(Dependencies)
+find_package(OGRE)
+find_package(OIS)
+find_package(QuickGUI)
+# find_package(Newton)
+# find_package(OgreNewt)
+find_package(RakNet)
 
-#ogre
-if (NOT OGRE_FOUND)
-	message(FATAL_ERROR "OGRE not found!")
-endif()
+# Compile settings for build types
+SET(CMAKE_CXX_FLAGS "")
+SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3 -fno-inline")
+SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g3")
+SET(CMAKE_CXX_FLAGS_RELEASE "-O2")
+SET(CMAKE_CXX_FLAGS_MINSIZEREL "-Os")
 
-#OIS
-if (NOT OIS_FOUND)
-	message(FATAL_ERROR "OIS not found!")
-endif()
-
-#raknet
-if (NOT RakNet_FOUND)
-	message(FATAL_ERROR "RakNet not found!")
-endif()
-
-#QuickGUI
-if ( NOT QuickGUI_FOUND)
-	message(FATAL_ERROR "QuickGUI not found!")
-endif()
-
-#set include
-include_directories(${DEP_INCLUDE_PATH})
-
-#set link
-link_directories (${DEP_LIB_PATH}) 
-
-# all set up
 # Build Targets
+# add_subdirectory(TerrainPhysics)
 add_subdirectory(TowerDefence)
