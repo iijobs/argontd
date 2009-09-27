@@ -11,10 +11,16 @@ class NetworkSystem
 public:
 
 	/**
-	 * Create a network system from given config
+	 * Create a network system from given config, if success will return true
 	 * @param config
+	 * @return success
 	 */
 	static bool create( const string& config );
+
+	/**
+	 * Check if network system is ready
+	 */
+	static bool ready();
 
 	/**
 	 * Destroy

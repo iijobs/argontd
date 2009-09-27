@@ -1,6 +1,6 @@
 #include "NetworkSystem.h"
 
-//#include "tinyxml.h"
+#include "tinyxml.h"
 
 #include <vector>
 using std::vector;
@@ -17,9 +17,14 @@ RakNet::RPC3 * NetworkSystem::mRPC3 = 0;
 NetworkIDManager * NetworkSystem::mNetworkIDManager = 0;
 RakPeerInterface * NetworkSystem::mPeer = 0;
 
+
+bool NetworkSystem::ready(){
+	return mPeer && mRPC3 && mNetworkIDManager;
+}
+
 bool NetworkSystem::create( const string& config ){
 
-/*	TiXmlDocument doc( config.c_str() );
+	TiXmlDocument doc( config.c_str() );
 	if ( !doc.LoadFile() ){
 		return false;
 	}
@@ -28,7 +33,7 @@ bool NetworkSystem::create( const string& config ){
 	mPeer = RakNetworkFactory::GetRakPeerInterface();
 
 	//create RPC3
-	//mRPC3 = new RakNet::RPC3();
+	mRPC3 = new RakNet::RPC3();
 
 	//create Network ID manager
 	mNetworkIDManager = new NetworkIDManager();
@@ -76,7 +81,7 @@ bool NetworkSystem::create( const string& config ){
 		}
 
 		mNetworkIDManager->SetIsNetworkIDAuthority(true);
-		//mRPC3->SetNetworkIDManager(mNetworkIDManager);
+		mRPC3->SetNetworkIDManager(mNetworkIDManager);
 
 		//start server
 		mPeer->Startup(mMaxConnections,30, mSocketDescriptions, interfaces.size());
@@ -87,7 +92,7 @@ bool NetworkSystem::create( const string& config ){
 		//check for client tag (should be there)
 		TiXmlElement * client = docHandle.FirstChildElement("client").Element();
 		if ( client ){
-			//mRPC3->SetNetworkIDManager(mNetworkIDManager);
+			mRPC3->SetNetworkIDManager(mNetworkIDManager);
 			SocketDescriptor socketDescriptor(0,0);
 			mPeer->Startup(1 ,30, &socketDescriptor, 1);
 		} else {
@@ -99,7 +104,7 @@ bool NetworkSystem::create( const string& config ){
 
 	//attach RPC
 	mPeer->AttachPlugin(mRPC3);
-*/
+
 	return true;
 }
 
