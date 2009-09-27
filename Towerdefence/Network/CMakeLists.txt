@@ -1,5 +1,5 @@
 #set include
-include_directories("include" ${RakNet_INCLUDE_DIRS} ${boost_INCLUDE_DIRS})
+include_directories("include" ${RakNet_INCLUDE_DIRS} ${boost_INCLUDE_DIRS} "/usr/include")
 
 file(GLOB NetworkSystem_SRC "src/*.cpp" "include/*.h")
 
