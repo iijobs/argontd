@@ -44,6 +44,8 @@ bool NetworkSystem::create( const string& config ){
 	//check if server
 	TiXmlElement * server = docHandle.FirstChildElement("server").Element();
 	if ( server ){
+		mType = NetworkSystem::Server;
+
 		int mMaxConnections;
 		if ( !server->Attribute("connections",&mMaxConnections) ){
 			cerr << "missing 'connections' attribute in 'server' tag" << endl;
@@ -92,9 +94,8 @@ bool NetworkSystem::create( const string& config ){
 		//check for client tag (should be there)
 		TiXmlElement * client = docHandle.FirstChildElement("client").Element();
 		if ( client ){
+			mType = NetworkSystem::Client;
 			mRPC3->SetNetworkIDManager(mNetworkIDManager);
-			SocketDescriptor socketDescriptor(0,0);
-			mPeer->Startup(1 ,30, &socketDescriptor, 1);
 		} else {
 			cerr << "no 'server' or 'client' tag" << endl;
 			destroy();

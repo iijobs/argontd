@@ -8,9 +8,18 @@
 #ifndef ROOM_H_
 #define ROOM_H_
 
+#include "NetworkObject.h"
+#include "RPC3.h"
 #include "raknet/BitStream.h"
+#include "raknet/NetworkIDObject.h"
 
-class Room {
+
+#include "Client.h"
+
+/**
+ * A room is a container with players
+ */
+class Room : public NetworkObject {
 private:
 
 	friend RakNet::BitStream& operator<<(RakNet::BitStream&, Room&);
@@ -21,34 +30,73 @@ private:
 
 	int maxplayers;
 
+	Client host;
+
 public:
-	Room();
+
+	/**
+	 * Room constructor
+	 */
+	Room():
+		maxplayers(0),
+		players(0)
+	{}
+
 
 	Room( int maxplayers ):
-		maxplayers(maxplayers){
+		maxplayers(maxplayers),
+		players(0){
 	}
 
+	/**
+	 * Destructor
+	 */
 	virtual ~Room();
 
-	void join(){
+	virtual void registerInterface(){
+		RPC3_REGISTER_FUNCTION(NetworkSystem::getRPC3(), &Room::join);
+		RPC3_REGISTER_FUNCTION(NetworkSystem::getRPC3(), &Room::leave);
+	}
+
+	/**
+	 * Join a room
+	 */
+	void join( RakNet::RPC3 * rpc3 ){
 		players++;
 	}
 
-	void leave(){
+	/**
+	 * Leave a room
+	 */
+	void leave( RakNet::RPC3 * rpc3 ){
 		players--;
+	}
+
+	Client& getHost(){
+		return host;
+	}
+
+	/**
+	 * Compare operation
+	 * @param opp
+	 * @return true if same, false if not
+	 */
+	bool operator==( Room& opp ) {
+		return this->GetNetworkID() == opp.GetNetworkID();
 	}
 };
 
 RakNet::BitStream& operator<<(RakNet::BitStream& out, Room& in)
 {
-	in.players;
+	out.Write(in.players);
+	out.Write(in.maxplayers);
 	return out;
 }
 
 RakNet::BitStream& operator>>(RakNet::BitStream& in, Room& out)
 {
-	//bool success = in.ReadNormVector(out.x,out.y,out.z);
-	//assert(success);
+	assert(in.Read(out.players));
+	assert(in.Read(out.maxplayers));
 	return in;
 }
 

@@ -7,8 +7,5 @@
 
 #include "Loby.h"
 
-Loby::Loby() {
-}
-
 Loby::~Loby() {
 }

@@ -10,6 +10,11 @@ class NetworkSystem
 {
 public:
 
+	enum Type {
+		Client,
+		Server
+	};
+
 	/**
 	 * Create a network system from given config, if success will return true
 	 * @param config
@@ -48,7 +53,17 @@ public:
 		return mNetworkIDManager;
 	}
 
+
+	/**
+	 * Get NetworkIDManager
+	 */
+	static Type getNodeType(){
+		return mType;
+	}
+
 private:
+
+	static Type mType;
 
 	/**
 	 * RPC instance
