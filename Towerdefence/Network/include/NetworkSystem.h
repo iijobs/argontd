@@ -4,7 +4,7 @@
 using std::string;
 
 #include <raknet/RakPeerInterface.h>
-//#include <RPC3.h>
+#include <RPC3.h>
 
 class NetworkSystem
 {
@@ -31,9 +31,9 @@ public:
 	/**
 	 * Get RPC3
 	 */
-	/*static RakNet::RPC3 * getRPC3(){
+	static RakNet::RPC3 * getRPC3(){
 		return mRPC3;
-	}*/
+	}
 
 	/**
 	 * Get NetworkIDManager
@@ -47,7 +47,7 @@ private:
 	/**
 	 * RPC instance
 	 */
-	//static RakNet::RPC3 * mRPC3;
+	static RakNet::RPC3 * mRPC3;
 
 	/**
 	 * NetworkIDManager

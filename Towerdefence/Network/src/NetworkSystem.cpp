@@ -13,7 +13,7 @@ using std::endl;
 #include <raknet/RakNetworkFactory.h>
 #include <raknet/MessageIdentifiers.h>
 
-//RakNet::RPC3 * NetworkSystem::mRPC3 = 0;
+RakNet::RPC3 * NetworkSystem::mRPC3 = 0;
 NetworkIDManager * NetworkSystem::mNetworkIDManager = 0;
 RakPeerInterface * NetworkSystem::mPeer = 0;
 
@@ -98,21 +98,21 @@ bool NetworkSystem::create( const string& config ){
 	}
 
 	//attach RPC
-	//mPeer->AttachPlugin(mRPC3);
+	mPeer->AttachPlugin(mRPC3);
 */
 	return true;
 }
 
 void NetworkSystem::destroy(){
 	if ( mPeer ){
-		//mPeer->DetachPlugin(mRPC3);
+		mPeer->DetachPlugin(mRPC3);
 		RakNetworkFactory::DestroyRakPeerInterface(mPeer);
 	}
 	mPeer = 0;
 
-	/*if ( mRPC3 )
+	if ( mRPC3 )
 		delete mRPC3;
-	mRPC3 = 0;*/
+	mRPC3 = 0;
 
 	if ( mNetworkIDManager)
 		delete mNetworkIDManager;

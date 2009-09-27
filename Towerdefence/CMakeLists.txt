@@ -8,9 +8,8 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 find_package(OGRE)
 find_package(OIS)
 find_package(QuickGUI)
-# find_package(Newton)
-# find_package(OgreNewt)
 find_package(RakNet)
+find_package(Boost)
 
 
 # Compile settings for build types
@@ -26,5 +25,6 @@ SET(CMAKE_CXX_FLAGS_MINSIZEREL "-Os")
 endif()
 
 # Build Targets
-# add_subdirectory(TerrainPhysics)
-add_subdirectory(TowerDefence)
+
+add_subdirectory(Network)
+//add_subdirectory(TowerDefence)
