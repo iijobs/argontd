@@ -27,4 +27,5 @@ endif()
 # Build Targets
 
 add_subdirectory(Network)
-//add_subdirectory(TowerDefence)
+add_subdirectory(LobyServer)
+#add_subdirectory(TowerDefence)
