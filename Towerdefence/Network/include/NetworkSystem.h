@@ -53,7 +53,6 @@ public:
 		return mNetworkIDManager;
 	}
 
-
 	/**
 	 * Get NetworkIDManager
 	 */

@@ -114,6 +114,8 @@ void run( int argc, char * argv[] ){
 	}
 
 	go();
+
+	NetworkSystem::destroy();
 }
 
 

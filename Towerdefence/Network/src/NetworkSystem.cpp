@@ -96,6 +96,7 @@ bool NetworkSystem::create( const string& config ){
 		if ( client ){
 			mType = NetworkSystem::Client;
 			mRPC3->SetNetworkIDManager(mNetworkIDManager);
+			//mPeer->Connect("",0,0,0);
 		} else {
 			cerr << "no 'server' or 'client' tag" << endl;
 			destroy();
@@ -124,8 +125,6 @@ void NetworkSystem::destroy(){
 		delete mNetworkIDManager;
 	mNetworkIDManager = 0;
 }
-
-
 
 NetworkSystem::NetworkSystem(void)
 {
